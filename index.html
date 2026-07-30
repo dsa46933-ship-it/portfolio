@@ -1,1 +1,970 @@
 
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Портфолио · веб-верстальщик / дизайнер</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <style>
+    :root {
+      --bg-body: #faf9f8;
+      --bg-header: #faf9f885;
+      --bg-card: #ffffff;
+      --bg-filter: #f0efed;
+      --bg-input: #f0efed;
+      --text-primary: #1e1e1e;
+      --text-secondary: #3a3a3a;
+      --text-muted: #6b6b6b;
+      --border-light: #f0efed;
+      --border-medium: #e0deda;
+      --shadow-card: 0 8px 30px rgba(0,0,0,0.02);
+      --shadow-hover: 0 24px 48px rgba(0,0,0,0.04);
+      --shadow-modal: 0 40px 80px rgba(0,0,0,0.15);
+      --btn-bg: #1e1e1e;
+      --btn-text: #fff;
+      --btn-hover: #2f2f2f;
+      --thumb-bg: #f0eeea;
+      --thumb-gradient: radial-gradient(circle at 20% 30%, #f6f5f2 0%, #e8e5df 100%);
+      --popup-bg: #ffffff;
+      --popup-shadow: 0 20px 60px rgba(0,0,0,0.08);
+      --toggle-bg: #d0cec9;
+      --toggle-active: #1e1e1e;
+      --pagination-bg: transparent;
+      --pagination-hover: var(--bg-filter);
+      --pagination-active: var(--btn-bg);
+      --pagination-active-text: var(--btn-text);
+      --transition-speed: 0.4s;
+      --skill-bg: #f0efed;
+      --skill-fill: #1e1e1e;
+      --testimonial-bg: #ffffff;
+      --modal-overlay: rgba(0,0,0,0.5);
+      --input-border: #e0deda;
+      --input-focus: #1e1e1e;
+      --file-bg: #f0efed;
+      --pricing-bg: #ffffff;
+      --pricing-border: #e0deda;
+      --pricing-popular: #1e1e1e;
+      --pricing-popular-text: #ffffff;
+    }
+    [data-theme="dark"] {
+      --bg-body: #121212;
+      --bg-header: #12121285;
+      --bg-card: #1e1e1e;
+      --bg-filter: #2a2a2a;
+      --bg-input: #2a2a2a;
+      --text-primary: #f0efed;
+      --text-secondary: #cac8c3;
+      --text-muted: #9a9a9a;
+      --border-light: #2a2a2a;
+      --border-medium: #3a3a3a;
+      --shadow-card: 0 8px 30px rgba(0,0,0,0.4);
+      --shadow-hover: 0 24px 48px rgba(0,0,0,0.6);
+      --shadow-modal: 0 40px 80px rgba(0,0,0,0.6);
+      --btn-bg: #f0efed;
+      --btn-text: #121212;
+      --btn-hover: #ffffff;
+      --thumb-bg: #2a2a2a;
+      --thumb-gradient: radial-gradient(circle at 20% 30%, #2a2a2a 0%, #1a1a1a 100%);
+      --popup-bg: #1e1e1e;
+      --popup-shadow: 0 20px 60px rgba(0,0,0,0.6);
+      --toggle-bg: #3a3a3a;
+      --toggle-active: #f0efed;
+      --pagination-hover: #2a2a2a;
+      --pagination-active: #f0efed;
+      --pagination-active-text: #121212;
+      --skill-bg: #2a2a2a;
+      --skill-fill: #f0efed;
+      --testimonial-bg: #1e1e1e;
+      --modal-overlay: rgba(0,0,0,0.7);
+      --input-border: #3a3a3a;
+      --input-focus: #f0efed;
+      --file-bg: #2a2a2a;
+      --pricing-bg: #1e1e1e;
+      --pricing-border: #3a3a3a;
+      --pricing-popular: #f0efed;
+      --pricing-popular-text: #121212;
+    }
+    @keyframes fadeInUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes slideInUp { from { opacity: 0; transform: translateY(30px) scale(0.95); } to { opacity: 1; transform: translateY(0) scale(1); } }
+    @keyframes skillFill { from { width: 0; } to { width: var(--skill-width); } }
+    .animate-on-load { opacity: 0; animation: fadeInUp 0.8s cubic-bezier(0.2, 0.9, 0.3, 1) forwards; }
+    .animate-on-load-delay-1 { animation-delay: 0.1s; }
+    .animate-on-load-delay-2 { animation-delay: 0.2s; }
+    .animate-on-load-delay-3 { animation-delay: 0.3s; }
+    .animate-on-load-delay-4 { animation-delay: 0.4s; }
+    .animate-on-load-delay-5 { animation-delay: 0.5s; }
+    .animate-on-load-delay-6 { animation-delay: 0.6s; }
+    .animate-on-load-delay-7 { animation-delay: 0.7s; }
+    .animate-on-load-delay-8 { animation-delay: 0.8s; }
+    .animate-on-load-delay-9 { animation-delay: 0.9s; }
+    .work-card { opacity: 0; animation: fadeInUp 0.6s cubic-bezier(0.2, 0.9, 0.3, 1) forwards; }
+    .work-card:nth-child(1) { animation-delay: 0.05s; }
+    .work-card:nth-child(2) { animation-delay: 0.1s; }
+    .work-card:nth-child(3) { animation-delay: 0.15s; }
+    .work-card:nth-child(4) { animation-delay: 0.2s; }
+    .work-card:nth-child(5) { animation-delay: 0.25s; }
+    .work-card:nth-child(6) { animation-delay: 0.3s; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; overscroll-behavior-y: contain; }
+    body { display: flex; font-family: 'Inter', sans-serif; background: var(--bg-body); color: var(--text-primary); line-height: 1.5; transition: background var(--transition-speed), color var(--transition-speed); overflow-x: hidden; scroll-behavior: smooth; overscroll-behavior-y: contain; -webkit-overflow-scrolling: touch; justify-content: center; flex-wrap: wrap; }
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: var(--bg-body); border-radius: 10px; }
+    ::-webkit-scrollbar-thumb { background: var(--text-muted); border-radius: 10px; transition: background 0.3s; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--text-primary); }
+    .container { position: relative; max-width: 1280px; padding: 0 2rem; }
+    .header { display: flex; position: sticky; top: 0; width: 100%; height: max-content; transition: background 0.4s; z-index: 1; }
+    .header-scroll-transform {display: flex; position: relative; width: 100%; justify-content: center; background: var(--bg-header); height: max-content;}
+    .header-content { display: flex; position: relative; width: 1280px; height: 85px; padding: 0 2rem; justify-content: space-between; align-items: center; flex-wrap: wrap; border-bottom: 1px solid var(--border-light); transition: border-color var(--transition-speed); }
+    .logo { font-weight: 700; font-size: 1.6rem; letter-spacing: -0.02em; background: linear-gradient(135deg, var(--text-primary) 0%, var(--text-muted) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; transition: background var(--transition-speed); display: inline-block; cursor: default; }
+    .logo:hover { transform: scale(1.05) rotate(-2deg); }
+    .nav a { text-decoration: none; color: var(--text-primary); margin-left: 2.5rem; font-weight: 500; font-size: 0.95rem; letter-spacing: 0.3px; padding-bottom: 4px; transition: color 0.2s; cursor: pointer; position: relative; }
+    .nav a::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 2px; background: var(--text-primary); transition: width 0.3s ease; }
+    .nav a:hover::after { width: 100%; }
+    .theme-toggle-btn { background: none; border: none; font-size: 1.4rem; color: var(--text-primary); cursor: pointer; padding: 0.2rem 0.5rem; transition: transform 0.3s ease, color var(--transition-speed); margin-left: 1.5rem; position: relative; }
+    .theme-toggle-btn:hover { transform: rotate(60deg) scale(1.1); }
+    .theme-popup { position: absolute; top: calc(100% + 12px); right: 0; background: var(--popup-bg); border-radius: 28px; padding: 1.8rem 2rem 2rem; box-shadow: var(--popup-shadow); border: 1px solid var(--border-light); max-width: 360px; opacity: 0; visibility: hidden; transform: translateY(-8px) scale(0.96); transition: border 0.3s, opacity 0.25s, transform 0.3s, visibility 0.25s, background var(--transition-speed); z-index: 100; backdrop-filter: blur(4px); }
+    .theme-popup.open { opacity: 1; visibility: visible; transform: translateY(0) scale(1); }
+    .theme-popup h4 { font-size: 0.9rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text-muted); margin-bottom: 1.2rem; transition: color var(--transition-speed); }
+    .popup-row { display: flex; align-items: center; justify-content: space-between; padding: 0.6rem 0; border-bottom: 1px solid var(--border-light); transition: border-color var(--transition-speed); }
+    .popup-row:last-child { border-bottom: none; }
+    .popup-row span { font-weight: 500; font-size: 0.95rem; color: var(--text-primary); transition: color var(--transition-speed); }
+    .popup-row small { font-size: 0.75rem; color: var(--text-muted); font-weight: 400; transition: color var(--transition-speed); }
+    .toggle-wrap { display: flex; width: 100%; align-items: center; gap: 0.8rem; justify-content: space-between; }
+    .toggle-label { font-size: 0.85rem; font-weight: 500; color: var(--text-secondary); transition: color var(--transition-speed); }
+    .toggle-switch { position: relative; width: 48px; height: 26px; flex-shrink: 0; background: var(--toggle-bg); border-radius: 40px; cursor: pointer; transition: background 0.3s, border-color var(--transition-speed); border: 1px solid var(--border-medium); }
+    .toggle-switch.active { background: var(--toggle-active); }
+    .toggle-switch .knob { position: absolute; top: 2px; left: 2px; width: 20px; height: 20px; background: #fff; border-radius: 50%; transition: transform 0.3s cubic-bezier(0.34, 1.2, 0.64, 1), background var(--transition-speed); box-shadow: 0 2px 8px rgba(0,0,0,0.15); }
+    .toggle-switch.active .knob { transform: translateX(22px); }
+    .toggle-switch.active.dark-knob .knob { background: #121212; }
+    .hero { padding: 4rem 0 3rem; display: flex; flex-direction: column; gap: 0.75rem; }
+    .hero-sub { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 3px; color: var(--text-muted); font-weight: 600; transition: color var(--transition-speed); }
+    .hero h1 { font-size: 4rem; font-weight: 700; letter-spacing: -0.03em; line-height: 1.1; max-width: 800px; transition: color var(--transition-speed); }
+    .hero h1 span { background: linear-gradient(145deg, var(--text-primary), var(--text-muted)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; transition: background var(--transition-speed); }
+    .hero p { font-size: 1.25rem; color: var(--text-secondary); max-width: 600px; margin-top: 0.5rem; line-height: 1.6; transition: color var(--transition-speed); }
+    .hero-cta { margin-top: 2rem; display: flex; gap: 1.2rem; flex-wrap: wrap; }
+    .btn { display: inline-block; padding: 0.8rem 2.2rem; border-radius: 60px; font-weight: 600; text-decoration: none; transition: all 0.25s ease; box-shadow: 0 0 0 2px var(--text-primary); font-size: 0.95rem; cursor: pointer; border: none; font-family: 'Inter', sans-serif; }
+    .btn-primary { background: var(--btn-bg); color: var(--btn-text); transition: background var(--transition-speed), color var(--transition-speed), transform 0.25s ease; }
+    .btn-primary:hover { background: var(--btn-hover); transform: translateY(-3px) scale(1.02); }
+    .btn-outline { background: transparent; color: var(--text-primary); transition: background var(--transition-speed), color var(--transition-speed), transform 0.25s ease; }
+    .btn-outline:hover { background: var(--text-primary); color: var(--bg-body); transform: translateY(-3px) scale(1.02); }
+    .section-title { font-size: 1.8rem; font-weight: 600; letter-spacing: -0.02em; margin: 3rem 0 0.25rem; display: flex; align-items: center; gap: 1rem; transition: color var(--transition-speed); }
+    .section-title::after { content: ''; flex: 1; height: 1px; background: var(--border-light); transition: background var(--transition-speed); }
+    .filter-bar { display: flex; flex-wrap: wrap; gap: 0.8rem; margin: 1.5rem 0 2rem; }
+    .filter-btn { background: transparent; border: 1px solid var(--border-medium); padding: 0.5rem 1.6rem; border-radius: 60px; font-weight: 500; font-size: 0.85rem; cursor: pointer; transition: all 0.3s cubic-bezier(0.2, 0.9, 0.3, 1); color: var(--text-secondary); font-family: 'Inter', sans-serif; }
+    .filter-btn:hover { border-color: var(--text-primary); background: var(--bg-filter); transform: translateY(-2px); }
+    .filter-btn.active { background: var(--btn-bg); color: var(--btn-text); border-color: var(--btn-bg); }
+    .works-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2.5rem; margin: 1.5rem 0 2rem; }
+    .work-card { background: var(--bg-card); border-radius: 28px; padding: 1.8rem 1.8rem 2rem; box-shadow: var(--shadow-card); transition: all 0.4s cubic-bezier(0.2, 0, 0, 1); border: 1px solid var(--border-light); display: flex; flex-direction: column; overflow: hidden; }
+    .work-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-hover); border-color: var(--border-medium); }
+    .work-thumb { width: 100%; aspect-ratio: 16/10; background: var(--thumb-bg); border-radius: 18px; margin-bottom: 1.5rem; display: flex; align-items: center; justify-content: center; background-image: var(--thumb-gradient); transition: all 0.3s ease; overflow: hidden; position: relative; touch-action: pan-y; user-select: none; -webkit-user-select: none; cursor: pointer; }
+    .work-thumb .slider-track { display: flex; width: 100%; height: 100%; transition: transform 0.4s cubic-bezier(0.2, 0.9, 0.3, 1); will-change: transform; }
+    .work-thumb .slider-track img { min-width: 100%; height: 100%; object-fit: cover; flex-shrink: 0; pointer-events: none; background-image: url(https://i0.wp.com/din-studio.com/wp-content/uploads/2022/12/Packaging-Design.png?fit=6000%2C54000&ssl=1); background-size: 100%;}
+    .work-thumb .slider-arrow { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.5); color: #fff; border: none; border-radius: 50%; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; cursor: pointer; opacity: 0; transition: opacity 0.3s ease, background 0.3s ease; z-index: 2; backdrop-filter: blur(4px); pointer-events: auto; }
+    .work-card:hover .work-thumb .slider-arrow { opacity: 0.8; }
+    .work-thumb .slider-arrow:hover { background: rgba(0,0,0,0.8); opacity: 1 !important; }
+    .work-thumb .slider-arrow.prev { left: 8px; }
+    .work-thumb .slider-arrow.next { right: 8px; }
+    .work-thumb .slider-dots { position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); display: flex; gap: 6px; z-index: 2; pointer-events: auto; }
+    .work-thumb .slider-dots .dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.5); transition: all 0.3s ease; cursor: pointer; border: none; padding: 0; }
+    .work-thumb .slider-dots .dot.active { background: #fff; transform: scale(1.3); }
+    .work-thumb .thumb-badge { position: absolute; top: 12px; right: 12px; background: rgba(0,0,0,0.6); color: #fff; padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.6rem; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; backdrop-filter: blur(4px); z-index: 3; pointer-events: none; }
+    .work-thumb .click-overlay { position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: 1; cursor: pointer; }
+    .work-card h3 { font-weight: 700; font-size: 1.4rem; letter-spacing: -0.02em; margin-bottom: 0.35rem; color: var(--text-primary); transition: color var(--transition-speed); }
+    .work-tag { display: inline-block; font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.8px; color: var(--text-muted); background: var(--bg-filter); padding: 0.2rem 0.9rem; border-radius: 40px; align-self: flex-start; margin-bottom: 0.8rem; transition: all var(--transition-speed); }
+    .work-desc { color: var(--text-secondary); font-size: 0.95rem; line-height: 1.5; margin-bottom: 1.5rem; flex: 1; transition: color var(--transition-speed); }
+    .work-link { font-weight: 600; text-decoration: none; color: var(--text-primary); display: inline-flex; align-items: center; gap: 0.5rem; border-bottom: 1.5px solid var(--border-medium); padding-bottom: 4px; transition: all 0.3s cubic-bezier(0.2, 0.9, 0.3, 1); width: fit-content; cursor: pointer; }
+    .work-link i { font-size: 0.8rem; transition: transform 0.3s ease; }
+    .work-link:hover { border-bottom-color: var(--text-primary); }
+    .work-link:hover i { transform: translateX(6px) scale(1.1); }
+    .pagination-wrapper { display: flex; justify-content: center; align-items: center; gap: 0.5rem; margin: 2rem 0 1rem; flex-wrap: wrap; }
+    .pagination-btn { display: inline-flex; align-items: center; justify-content: center; min-width: 40px; height: 40px; padding: 0 0.8rem; border-radius: 12px; border: 1px solid var(--border-medium); background: var(--pagination-bg); color: var(--text-secondary); font-weight: 500; font-size: 0.9rem; cursor: pointer; transition: all 0.3s cubic-bezier(0.2, 0.9, 0.3, 1); font-family: 'Inter', sans-serif; }
+    .pagination-btn:not(:disabled):hover { background: var(--pagination-hover); border-color: var(--text-primary); color: var(--text-primary); transform: translateY(-2px) scale(1.05); }
+    .pagination-btn:not(:disabled):active { transform: scale(0.95); }
+    .pagination-btn.active { background: var(--pagination-active); color: var(--pagination-active-text); border-color: var(--pagination-active); }
+    .pagination-btn:disabled { opacity: 0.3; cursor: not-allowed; transform: none !important; }
+    .pagination-btn i { font-size: 0.9rem; transition: transform 0.3s ease; }
+    .pagination-btn:not(:disabled):hover i { transform: scale(1.2); }
+    .pagination-btn[data-page="prev"]:not(:disabled):hover i { transform: translateX(-3px) scale(1.1); }
+    .pagination-btn[data-page="next"]:not(:disabled):hover i { transform: translateX(3px) scale(1.1); }
+    .pagination-ellipsis { display: inline-flex; align-items: center; justify-content: center; min-width: 40px; height: 40px; color: var(--text-muted); font-weight: 500; font-size: 0.9rem; transition: color var(--transition-speed); }
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin: 1.5rem 0 2rem; }
+    .skill-item { background: var(--bg-card); border-radius: 20px; padding: 1.5rem; border: 1px solid var(--border-light); transition: all 0.3s ease; }
+    .skill-item:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
+    .skill-item .skill-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.8rem; }
+    .skill-item .skill-name { font-weight: 600; font-size: 1rem; color: var(--text-primary); transition: color var(--transition-speed); }
+    .skill-item .skill-percent { font-weight: 700; font-size: 0.9rem; color: var(--text-primary); transition: color var(--transition-speed); }
+    .skill-bar { width: 100%; height: 8px; background: var(--skill-bg); border-radius: 10px; overflow: hidden; transition: background var(--transition-speed); }
+    .skill-bar .skill-fill { height: 100%; background: var(--skill-fill); border-radius: 10px; width: 0; animation: skillFill 1.2s cubic-bezier(0.2, 0.9, 0.3, 1) forwards; transition: background var(--transition-speed); }
+    .testimonials-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin: 1.5rem 0 2.5rem; }
+    .testimonial-item { background: var(--testimonial-bg); border-radius: 24px; padding: 2rem; border: 1px solid var(--border-light); transition: all 0.3s ease; position: relative; }
+    .testimonial-item:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
+    .testimonial-item .quote-icon { font-size: 2rem; color: var(--text-muted); opacity: 0.3; margin-bottom: 0.5rem; }
+    .testimonial-item .testimonial-text { font-size: 1rem; color: var(--text-secondary); line-height: 1.7; margin-bottom: 1.5rem; transition: color var(--transition-speed); }
+    .testimonial-item .testimonial-author { display: flex; align-items: center; gap: 1rem; }
+    .testimonial-item .author-avatar { width: 50px; height: 50px; border-radius: 50%; background: var(--thumb-gradient); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; color: var(--text-secondary); transition: background var(--transition-speed); }
+    .testimonial-item .author-info .author-name { font-weight: 600; color: var(--text-primary); transition: color var(--transition-speed); }
+    .testimonial-item .author-info .author-role { font-size: 0.85rem; color: var(--text-muted); transition: color var(--transition-speed); }
+    .stats-row { display: flex; gap: 3rem; flex-wrap: wrap; background: var(--bg-card); border-radius: 40px; padding: 1.8rem 2.8rem; margin: 2rem 0 2.5rem; border: 1px solid var(--border-light); justify-content: center; transition: all var(--transition-speed); }
+    .stat-item { text-align: center; transition: all 0.4s cubic-bezier(0.2, 0.9, 0.3, 1); }
+    .stat-item:hover { transform: translateY(-4px) scale(1.05); }
+    .stat-number { font-size: 2.4rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1; color: var(--text-primary); transition: color var(--transition-speed); }
+    .stat-label { font-size: 0.85rem; color: var(--text-muted); margin-top: 0.25rem; transition: color var(--transition-speed); }
+    .services { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 2rem; margin: 1.5rem 0 3.5rem; }
+    .service-item { background: var(--bg-card); border-radius: 28px; padding: 1.8rem 1.5rem; border: 1px solid var(--border-light); transition: all 0.4s cubic-bezier(0.2, 0.9, 0.3, 1); }
+    .service-item:hover { border-color: var(--border-medium); background: var(--bg-body); transform: translateY(-6px) scale(1.02); }
+    .service-item i { font-size: 1.8rem; color: var(--text-primary); margin-bottom: 1rem; display: inline-block; transition: transform 0.4s cubic-bezier(0.2, 0.9, 0.3, 1); }
+    .service-item:hover i { transform: scale(1.2) rotate(5deg); }
+    .service-item h4 { font-weight: 600; font-size: 1.1rem; margin-bottom: 0.3rem; color: var(--text-primary); transition: color var(--transition-speed); }
+    .service-item p { font-size: 0.9rem; color: var(--text-secondary); transition: color var(--transition-speed); }
+    .advantages-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 2rem; margin: 1.5rem 0 2rem; }
+    .advantage-item { background: var(--bg-card); border-radius: 24px; padding: 2rem 1.8rem; border: 1px solid var(--border-light); text-align: center; transition: all 0.4s cubic-bezier(0.2, 0.9, 0.3, 1); }
+    .advantage-item:hover { transform: translateY(-6px); box-shadow: var(--shadow-hover); border-color: var(--border-medium); }
+    .advantage-item .advantage-icon { font-size: 2.5rem; color: var(--text-primary); margin-bottom: 1rem; display: inline-block; transition: transform 0.4s cubic-bezier(0.2, 0.9, 0.3, 1); }
+    .advantage-item:hover .advantage-icon { transform: scale(1.15) rotate(5deg); }
+    .advantage-item h4 { font-weight: 600; font-size: 1.1rem; margin-bottom: 0.5rem; color: var(--text-primary); transition: color var(--transition-speed); }
+    .advantage-item p { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.6; transition: color var(--transition-speed); }
+    .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin: 1.5rem 0 2.5rem; }
+    .pricing-card { background: var(--pricing-bg); border-radius: 28px; padding: 2.5rem 2rem; border: 1px solid var(--pricing-border); text-align: center; transition: all 0.4s cubic-bezier(0.2, 0.9, 0.3, 1); position: relative; }
+    .pricing-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-hover); }
+    .pricing-card.popular { border-color: var(--pricing-popular); background: var(--pricing-popular); color: var(--pricing-popular-text); }
+    .pricing-card.popular .pricing-price, .pricing-card.popular .pricing-name, .pricing-card.popular .pricing-features li, .pricing-card.popular .pricing-features i { color: var(--pricing-popular-text); }
+    .pricing-card.popular .pricing-features i { color: var(--pricing-popular-text); }
+    .pricing-card .popular-badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--pricing-popular); color: var(--pricing-popular-text); padding: 0.3rem 1.2rem; border-radius: 20px; font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+    .pricing-card.popular .popular-badge { background: var(--pricing-popular-text); color: var(--pricing-popular); }
+    .pricing-name { font-size: 1.3rem; font-weight: 600; margin-bottom: 0.5rem; color: var(--text-primary); transition: color var(--transition-speed); }
+    .pricing-price { font-size: 2.8rem; font-weight: 700; color: var(--text-primary); margin-bottom: 0.3rem; transition: color var(--transition-speed); }
+    .pricing-price span { font-size: 1rem; font-weight: 400; color: var(--text-muted); }
+    .pricing-description { font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 1.5rem; transition: color var(--transition-speed); }
+    .pricing-features { list-style: none; text-align: left; margin-bottom: 2rem; }
+    .pricing-features li { padding: 0.4rem 0; color: var(--text-secondary); font-size: 0.9rem; display: flex; align-items: center; gap: 0.8rem; transition: color var(--transition-speed); }
+    .pricing-features li i { color: var(--text-primary); font-size: 0.9rem; width: 20px; transition: color var(--transition-speed); }
+    .pricing-card .btn { width: 100%; justify-content: center; }
+    .about-section { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; background: var(--bg-card); border-radius: 40px; padding: 3rem 3rem; margin: 3.5rem 0 4rem; border: 1px solid var(--border-light); gap: 2.5rem; transition: all 0.4s cubic-bezier(0.2, 0.9, 0.3, 1); }
+    .about-section:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); }
+    .about-text { flex: 2; min-width: 260px; }
+    .about-text h2 { font-size: 2rem; font-weight: 600; letter-spacing: -0.02em; margin-bottom: 1rem; color: var(--text-primary); transition: color var(--transition-speed); }
+    .about-text p { color: var(--text-secondary); max-width: 500px; line-height: 1.7; transition: color var(--transition-speed); }
+    .contact-badge { min-width: 200px; background: var(--bg-filter); border-radius: 60px; padding: 1rem 2rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; transition: all 0.3s cubic-bezier(0.2, 0.9, 0.3, 1); }
+    .contact-badge:hover { transform: scale(1.02); }
+    .contact-badge span { font-weight: 500; color: var(--text-primary); transition: color var(--transition-speed); }
+    .contact-badge .btn-small { background: var(--btn-bg); color: var(--btn-text); padding: 0.5rem 1.8rem; border-radius: 60px; text-decoration: none; font-weight: 500; font-size: 0.9rem; transition: all 0.3s cubic-bezier(0.2, 0.9, 0.3, 1); border: 1px solid transparent; cursor: pointer; font-family: 'Inter', sans-serif; }
+    .contact-badge .btn-small:hover { background: var(--btn-hover); transform: scale(1.05) translateY(-2px); }
+    .footer { padding: 2.5rem 0 2rem; border-top: 1px solid var(--border-light); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem; color: var(--text-muted); font-size: 0.9rem; transition: all var(--transition-speed); }
+    .socials a { color: var(--text-primary); margin-left: 1.8rem; font-size: 1.2rem; transition: all 0.3s cubic-bezier(0.2, 0.9, 0.3, 1); text-decoration: none; display: inline-block; }
+    .socials a:hover { color: var(--text-muted); transform: translateY(-4px) scale(1.2); }
+    .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--modal-overlay); z-index: 1000; display: none; align-items: center; justify-content: center; padding: 2rem; backdrop-filter: blur(4px); animation: fadeIn 0.3s ease; }
+    .modal-overlay.active { display: flex; }
+    .modal { background: var(--bg-card); border-radius: 32px; padding: 2.5rem; max-width: 600px; width: 100%; max-height: 90vh; overflow-y: auto; box-shadow: var(--shadow-modal); animation: slideInUp 0.4s cubic-bezier(0.2, 0.9, 0.3, 1); border: 1px solid var(--border-light); }
+    .modal::-webkit-scrollbar { width: 6px; }
+    .modal::-webkit-scrollbar-track { background: var(--bg-filter); border-radius: 10px; }
+    .modal::-webkit-scrollbar-thumb { background: var(--text-muted); border-radius: 10px; }
+    .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; }
+    .modal-header h2 { font-size: 1.6rem; font-weight: 700; color: var(--text-primary); transition: color var(--transition-speed); }
+    .modal-close { background: none; border: none; font-size: 1.5rem; color: var(--text-muted); cursor: pointer; transition: all 0.3s ease; padding: 0.3rem; border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; }
+    .modal-close:hover { background: var(--bg-filter); color: var(--text-primary); transform: rotate(90deg); }
+    .modal .form-group { margin-bottom: 1.2rem; }
+    .modal .form-group label { display: block; font-weight: 500; font-size: 0.9rem; color: var(--text-primary); margin-bottom: 0.4rem; transition: color var(--transition-speed); }
+    .modal .form-group input, .modal .form-group select, .modal .form-group textarea { width: 100%; padding: 0.8rem 1rem; border: 1.5px solid var(--input-border); border-radius: 14px; background: var(--bg-input); color: var(--text-primary); font-family: 'Inter', sans-serif; font-size: 0.95rem; transition: all 0.3s ease; outline: none; }
+    .modal .form-group input:focus, .modal .form-group select:focus, .modal .form-group textarea:focus { border-color: var(--input-focus); box-shadow: 0 0 0 3px rgba(30,30,30,0.05); }
+    .modal .form-group textarea { resize: vertical; min-height: 100px; }
+    .modal .form-group select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236b6b6b' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 1rem center; padding-right: 2.5rem; cursor: pointer; }
+    .modal .file-upload { position: relative; border: 2px dashed var(--input-border); border-radius: 14px; padding: 1.5rem; text-align: center; cursor: pointer; transition: all 0.3s ease; background: var(--bg-input); }
+    .modal .file-upload:hover { border-color: var(--input-focus); background: var(--bg-filter); }
+    .modal .file-upload input[type="file"] { position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; cursor: pointer; }
+    .modal .file-upload .file-label { color: var(--text-secondary); font-size: 0.9rem; transition: color var(--transition-speed); }
+    .modal .file-upload .file-label i { font-size: 2rem; display: block; margin-bottom: 0.5rem; color: var(--text-muted); }
+    .modal .file-list { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.8rem; }
+    .modal .file-item { background: var(--file-bg); padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.8rem; display: flex; align-items: center; gap: 0.5rem; color: var(--text-secondary); transition: all var(--transition-speed); }
+    .modal .file-item .remove-file { background: none; border: none; color: var(--text-muted); cursor: pointer; font-size: 0.8rem; padding: 0 0.2rem; transition: color 0.2s; }
+    .modal .file-item .remove-file:hover { color: #e74c3c; }
+    .modal .form-submit { width: 100%; padding: 1rem; border: none; border-radius: 60px; background: var(--btn-bg); color: var(--btn-text); font-weight: 600; font-size: 1rem; cursor: pointer; transition: all 0.3s ease; font-family: 'Inter', sans-serif; margin-top: 0.5rem; }
+    .modal .form-submit:hover { background: var(--btn-hover); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(0,0,0,0.1); }
+    [data-theme="dark"] .modal .form-submit:hover { box-shadow: 0 8px 25px rgba(0,0,0,0.3); }
+    .modal-slider-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.92); z-index: 2000; display: none; align-items: center; justify-content: center; padding: 2rem; animation: fadeIn 0.3s ease; }
+    .modal-slider-overlay.active { display: flex; }
+    .modal-slider { position: relative; max-width: 90vw; max-height: 90vh; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; flex-direction: column; user-select: none; -webkit-user-select: none; touch-action: none; }
+    .modal-slider .slider-close { position: absolute; top: 20px; right: 30px; background: none; border: none; color: #fff; font-size: 2.5rem; cursor: pointer; z-index: 10; transition: transform 0.3s ease; opacity: 0.8; }
+    .modal-slider .slider-close:hover { transform: rotate(90deg) scale(1.1); opacity: 1; }
+    .modal-slider .slider-image-wrap { width: 100%; height: 80%; display: flex; align-items: center; justify-content: center; overflow: hidden; position: relative; cursor: grab; touch-action: none; }
+    .modal-slider .slider-image-wrap:active { cursor: grabbing; }
+    .modal-slider .slider-image-wrap img { max-width: 100%; max-height: 100%; object-fit: contain; transition: opacity 0.3s ease; pointer-events: none; }
+    .modal-slider .slider-arrow-modal { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.15); color: #fff; border: none; border-radius: 50%; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s ease; z-index: 5; font-size: 1.5rem; backdrop-filter: blur(4px); }
+    .modal-slider .slider-arrow-modal:hover { background: rgba(255,255,255,0.3); transform: translateY(-50%) scale(1.1); }
+    .modal-slider .slider-arrow-modal.prev { left: 20px; }
+    .modal-slider .slider-arrow-modal.next { right: 20px; }
+    .modal-slider .slider-dots-modal { position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); display: flex; gap: 10px; z-index: 5; }
+    .modal-slider .slider-dots-modal .dot-modal { width: 12px; height: 12px; border-radius: 50%; background: rgba(255,255,255,0.3); border: none; cursor: pointer; transition: all 0.3s ease; padding: 0; }
+    .modal-slider .slider-dots-modal .dot-modal.active { background: #fff; transform: scale(1.3); }
+    .modal-slider .slider-counter { position: absolute; bottom: 80px; left: 50%; transform: translateX(-50%); color: rgba(255,255,255,0.7); font-size: 0.9rem; font-weight: 500; z-index: 5; }
+    .modal-slider .slider-project-title { position: absolute; top: 80px; left: 50%; transform: translateX(-50%); color: rgba(255,255,255,0.9); font-size: 1.2rem; font-weight: 600; z-index: 5; text-shadow: 0 2px 10px rgba(0,0,0,0.5); white-space: nowrap; }
+    @media (max-width: 720px) {
+      .header { flex-direction: column; align-items: flex-start; gap: 0.8rem; }
+      .nav a { margin-left: 0; margin-right: 1.8rem; font-size: 0.9rem; }
+      .theme-toggle-btn { margin-left: 0; margin-top: 0.2rem; }
+      .theme-popup { right: -10px; min-width: 250px; }
+      .hero h1 { font-size: 2.8rem; }
+      .about-section { padding: 2rem 1.5rem; flex-direction: column; align-items: flex-start; }
+      .contact-badge { width: 100%; justify-content: center; }
+      .footer { flex-direction: column; align-items: flex-start; }
+      .socials a { margin-left: 0; margin-right: 1.5rem; }
+      .stats-row { padding: 1.5rem 1.2rem; gap: 1.5rem; }
+      .pagination-btn { min-width: 36px; height: 36px; font-size: 0.8rem; }
+      .modal { padding: 1.5rem; margin: 1rem; }
+      .pricing-grid { grid-template-columns: 1fr; }
+      .advantages-grid { grid-template-columns: 1fr 1fr; }
+      .modal-slider .slider-arrow-modal { width: 36px; height: 36px; font-size: 1rem; }
+      .modal-slider .slider-arrow-modal.prev { left: 10px; }
+      .modal-slider .slider-arrow-modal.next { right: 10px; }
+      .modal-slider .slider-project-title { font-size: 1rem; top: 70px; }
+      .modal-slider .slider-close { top: 15px; right: 20px; font-size: 2rem; }
+    }
+    @media (max-width: 480px) {
+      .hero h1 { font-size: 2.2rem; }
+      .container { padding: 0 1.2rem; }
+      .works-grid { gap: 1.5rem; }
+      .pagination-btn { min-width: 32px; height: 32px; font-size: 0.75rem; padding: 0 0.5rem; }
+      .skills-grid { grid-template-columns: 1fr; }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .advantages-grid { grid-template-columns: 1fr; }
+      .modal { padding: 1.2rem; }
+    }
+    img.is-broken {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <header class="header animate-on-load">
+    <div class="header-scroll-transform js-header">
+      <div class="header-content">
+        <div class="logo">✦ portfolio</div>
+        <div style="display:flex; align-items:center; flex-wrap:wrap; gap:0.5rem;">
+          <div class="nav">
+            <a href="#works" data-target="#works">Работы</a>
+            <a href="#skills" data-target="#skills">Навыки</a>
+            <a href="#pricing" data-target="#pricing">Цены</a>
+            <a href="#contact" data-target="#contact">Контакты</a>
+          </div>
+          <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Настройки темы">
+            <i class="fas fa-moon"></i>
+          </button>
+          <div class="theme-popup" id="themePopup">
+            <h4><i class="fas fa-palette" style="margin-right:8px;"></i> Настройка темы</h4>
+            <div class="popup-row">
+              <div class="toggle-wrap">
+                <span class="toggle-label" id="toggleLabel">Светлая тема</span>
+                <div class="toggle-switch" id="themeToggleSwitch">
+                  <div class="knob"></div>
+                </div>
+              </div>
+            </div>
+            <div class="popup-row" style="border-bottom:none; padding-top:0.8rem; justify-content:flex-start; gap:1rem;">
+              <small><i class="fas fa-clock"></i> Авто: системная светлая · дневной</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container" id="app"></div>
+
+  <!-- Modal Slider -->
+  <div class="modal-slider-overlay" id="modalSliderOverlay">
+    <div class="modal-slider">
+      <button class="slider-close" id="sliderClose"><i class="fas fa-times"></i></button>
+      <div class="slider-project-title" id="sliderProjectTitle"></div>
+      <div class="slider-image-wrap" id="sliderImageWrap">
+        <img id="sliderImage" src="" alt="Project screenshot" draggable="false" />
+      </div>
+      <button class="slider-arrow-modal prev" id="sliderPrev"><i class="fas fa-chevron-left"></i></button>
+      <button class="slider-arrow-modal next" id="sliderNext"><i class="fas fa-chevron-right"></i></button>
+      <div class="slider-counter" id="sliderCounter">1 / 1</div>
+      <div class="slider-dots-modal" id="sliderDotsModal"></div>
+    </div>
+  </div>
+
+  <script>
+    // --- КОНФИГУРАЦИЯ СЛАЙДЕРОВ ---
+    const SLIDER_CONFIG = {
+      disableMouseEvents: false,
+      swipeThreshold: 30,
+      transitionDuration: 400
+    };
+
+    // --- ДАННЫЕ ---
+    const content = {
+      hero: {
+        sub: 'web-разработка & дизайн',
+        title: 'Создаю <span>сайты</span>, которые работают',
+        desc: 'Верстка, анимация, адаптив, внимание к деталям. Превращаю макеты в живой интерфейс.',
+        cta: [
+          { text: 'Смотреть работы', type: 'primary', href: '#works' },
+          { text: 'Связаться', type: 'outline', href: '#contact' }
+        ]
+      },
+      filters: ['Все', 'Лендинг', 'Интернет-магазин', 'Брендинг', 'Корпоративный'],
+      projects: [
+        { id: 1, title: 'Nova Studio', category: 'Лендинг', desc: 'Креативный лендинг с плавной анимацией, адаптивом и micro-interactions.', icon: 'fa-laptop-code', 
+                    screenshots: [
+            'https://s3-alpha.figma.com/hub/file/2968442518/f98cf378-de39-49e0-9e05-9b6bdb31530b-cover.png',
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQd641_kmOL6BdjCz3aoR0U780DouiKZJb9Ndl4fqPHpg&s',
+            'https://images-platform.99static.com//8bjCxS2MWSuReP1DLkKSQLZfhY4=/322x0:1597x1275/fit-in/590x590/projects-files/24/2410/241088/a26ca456-ec82-43e6-9c0c-7eafc75574dd.png'
+          ]
+        },
+        { id: 2, title: 'Mellow Store', category: 'Интернет-магазин', desc: 'Каталог товаров с фильтрацией, корзиной и адаптивной сеткой.', icon: 'fa-shopping-bag', screenshots: ['https://picsum.photos/seed/mellow1/600/400','https://picsum.photos/seed/mellow2/600/400'] },
+        { id: 3, title: 'Artisan Coffee', category: 'Брендинг', desc: 'Минималистичный сайт с визуальным акцентом на продукт и атмосферу.', icon: 'fa-pen-fancy', screenshots: ['https://picsum.photos/seed/artisan1/600/400','https://picsum.photos/seed/artisan2/600/400','https://picsum.photos/seed/artisan3/600/400','https://picsum.photos/seed/artisan4/600/400'] },
+        { id: 4, title: 'Urban Guide', category: 'Лендинг', desc: 'Гид по городу с интерактивной картой и динамическими блоками.', icon: 'fa-map-location-dot', screenshots: ['https://picsum.photos/seed/urban1/600/400','https://picsum.photos/seed/urban2/600/400'] },
+        { id: 5, title: 'Furni House', category: 'Интернет-магазин', desc: 'Мебельный магазин с 3D-просмотром и удобной корзиной.', icon: 'fa-couch', screenshots: ['https://picsum.photos/seed/furni1/600/400','https://picsum.photos/seed/furni2/600/400','https://picsum.photos/seed/furni3/600/400'] },
+        { id: 6, title: 'Vivid Studio', category: 'Брендинг', desc: 'Сайт-портфолио для дизайн-студии с акцентной типографикой.', icon: 'fa-palette', screenshots: ['https://picsum.photos/seed/vivid1/600/400','https://picsum.photos/seed/vivid2/600/400'] },
+        { id: 7, title: 'EcoFuture', category: 'Корпоративный', desc: 'Корпоративный сайт для экологической компании с ESG-отчетностью.', icon: 'fa-leaf', screenshots: ['https://picsum.photos/seed/ecofuture1/600/400','https://picsum.photos/seed/ecofuture2/600/400','https://picsum.photos/seed/ecofuture3/600/400'] },
+        { id: 8, title: 'TechHub', category: 'Корпоративный', desc: 'Сайт IT-компании с блогом, вакансиями и кастомной анимацией.', icon: 'fa-microchip', screenshots: ['https://picsum.photos/seed/techhub1/600/400','https://picsum.photos/seed/techhub2/600/400'] },
+        { id: 9, title: 'SweetCake', category: 'Лендинг', desc: 'Одностраничник для кондитерской с галереей и формой заказа.', icon: 'fa-cake-candles', screenshots: ['https://picsum.photos/seed/sweetcake1/600/400','https://picsum.photos/seed/sweetcake2/600/400','https://picsum.photos/seed/sweetcake3/600/400'] },
+        { id: 10, title: 'FitLife', category: 'Брендинг', desc: 'Сайт фитнес-клуба с расписанием, тренерами и мотивационными блоками.', icon: 'fa-dumbbell', screenshots: ['https://picsum.photos/seed/fitlife1/600/400','https://picsum.photos/seed/fitlife2/600/400'] },
+        { id: 11, title: 'BookNook', category: 'Интернет-магазин', desc: 'Онлайн-библиотека с поиском, рейтингами и рекомендациями.', icon: 'fa-book-open', screenshots: ['https://picsum.photos/seed/booknook1/600/400','https://picsum.photos/seed/booknook2/600/400','https://picsum.photos/seed/booknook3/600/400'] },
+        { id: 12, title: 'Apex Realty', category: 'Корпоративный', desc: 'Сайт агентства недвижимости с каталогом объектов и 3D-турами.', icon: 'fa-building', screenshots: ['https://picsum.photos/seed/apex1/600/400','https://picsum.photos/seed/apex2/600/400'] },
+        { id: 13, title: 'Bloom Studio', category: 'Брендинг', desc: 'Сайт флористического бюро с нежной эстетикой и галереей работ.', icon: 'fa-seedling', screenshots: ['https://picsum.photos/seed/bloom1/600/400','https://picsum.photos/seed/bloom2/600/400','https://picsum.photos/seed/bloom3/600/400'] },
+        { id: 14, title: 'DevForge', category: 'Корпоративный', desc: 'Платформа для IT-обучения с интерактивными курсами и трекерами.', icon: 'fa-code-branch', screenshots: ['https://picsum.photos/seed/devforge1/600/400','https://picsum.photos/seed/devforge2/600/400'] },
+        { id: 15, title: 'MarketPulse', category: 'Лендинг', desc: 'Сайт для стартапа с анимированной статистикой и графиками.', icon: 'fa-chart-line', screenshots: ['https://picsum.photos/seed/marketpulse1/600/400','https://picsum.photos/seed/marketpulse2/600/400','https://picsum.photos/seed/marketpulse3/600/400'] },
+        { id: 16, title: 'EcoStore', category: 'Интернет-магазин', desc: 'Магазин эко-товаров с фильтрацией по материалам и рейтингами.', icon: 'fa-recycle', screenshots: ['https://picsum.photos/seed/ecostore1/600/400','https://picsum.photos/seed/ecostore2/600/400'] },
+        { id: 17, title: 'Vibe Music', category: 'Брендинг', desc: 'Сайт музыкального лейбла с плеером и афишей концертов.', icon: 'fa-music', screenshots: ['https://picsum.photos/seed/vibemusic1/600/400','https://picsum.photos/seed/vibemusic2/600/400','https://picsum.photos/seed/vibemusic3/600/400'] },
+        { id: 18, title: 'HealthFirst', category: 'Корпоративный', desc: 'Корпоративный сайт медцентра с записью на прием и онлайн-консультациями.', icon: 'fa-heartbeat', screenshots: ['https://picsum.photos/seed/healthfirst1/600/400','https://picsum.photos/seed/healthfirst2/600/400'] }
+      ],
+      skills: [
+        { name: 'HTML5 & CSS3', percent: 95 },
+        { name: 'JavaScript / TypeScript', percent: 85 },
+        { name: 'React / Next.js', percent: 80 },
+        { name: 'Figma / Photoshop', percent: 75 },
+        { name: 'Git / CI/CD', percent: 70 },
+        { name: 'Адаптивная верстка', percent: 90 }
+      ],
+      testimonials: [
+        { text: 'Отличная работа! Сайт получился быстрым, адаптивным и очень стильным. Внимание к деталям на высоте.', author: 'Анна Смирнова', role: 'CEO, Nova Studio' },
+        { text: 'Профессиональный подход и четкое выполнение задач. Верстка идеально соответствует макетам Figma.', author: 'Михаил Иванов', role: 'Арт-директор, Artisan Coffee' },
+        { text: 'Работа выполнена быстро и качественно. Анимации и переходы сделаны на уровне лучших мировых практик.', author: 'Елена Петрова', role: 'Маркетолог, Urban Guide' }
+      ],
+      advantages: [
+        { icon: 'fa-bolt', title: 'Быстрая разработка', desc: 'Создаю сайты в сжатые сроки без потери качества. Оптимизирую процессы для ускорения работы.' },
+        { icon: 'fa-mobile-alt', title: 'Адаптивный дизайн', desc: 'Все сайты идеально выглядят на любых устройствах: от смартфонов до больших мониторов.' },
+        { icon: 'fa-search', title: 'SEO-оптимизация', desc: 'Закладываю правильную семантическую структуру для хорошего ранжирования в поисковых системах.' },
+        { icon: 'fa-headset', title: 'Поддержка 24/7', desc: 'Всегда на связи после сдачи проекта. Быстро исправляю любые возникшие вопросы.' }
+      ],
+      pricing: [
+        { name: 'Сайт-визитка', price: 15000, description: 'Идеально для стартапов и небольших проектов', features: ['До 5 страниц', 'Адаптивная верстка', 'Форма обратной связи', 'Базовая SEO-оптимизация', '2 недели разработки'], popular: false },
+        { name: 'Бизнес-сайт', price: 35000, description: 'Оптимальный выбор для развития бизнеса', features: ['До 12 страниц', 'Адаптивная верстка', 'Интерактивные элементы', 'Продвинутая SEO', 'Кастомные анимации', '1 месяц разработки'], popular: true },
+        { name: 'Интернет-магазин', price: 55000, description: 'Полноценное решение для e-commerce', features: ['Каталог товаров', 'Корзина и оформление заказа', 'Личный кабинет', 'Интеграция с платежами', 'Админ-панель', '1.5 месяца разработки'], popular: false },
+        { name: 'Корпоративный сайт', price: 75000, description: 'Многофункциональный сайт для крупного бизнеса', features: ['До 30 страниц', 'Мультиязычность', 'Личный кабинет', 'Интеграция с CRM', 'Кастомные модули', '2 месяца разработки'], popular: false },
+        { name: 'Лендинг премиум', price: 25000, description: 'Продающий лендинг с высокой конверсией', features: ['Одностраничный сайт', 'Анимации и эффекты', 'A/B тестирование', 'Интеграция с email-сервисами', '3 недели разработки'], popular: false },
+        { name: 'Веб-приложение', price: 120000, description: 'Сложное веб-приложение под ключ', features: ['Полноценное SPA', 'Backend API', 'База данных', 'Авторизация и роли', 'Панель администрирования', '3 месяца разработки'], popular: false }
+      ],
+      services: [
+        { icon: 'fa-code', title: 'Вёрстка', desc: 'HTML5, CSS3, Flex/Grid, адаптив, кроссбраузерность' },
+        { icon: 'fa-paint-brush', title: 'Дизайн', desc: 'UI/UX прототипы, типографика, композиция, цвет' },
+        { icon: 'fa-mouse-pointer', title: 'Анимация', desc: 'CSS-анимации, переходы, интерактивность' },
+        { icon: 'fa-rocket', title: 'Оптимизация', desc: 'Скорость загрузки, доступность, чистый код' }
+      ],
+      about: {
+        title: 'Дизайн и код в одном флаконе',
+        desc: 'Работаю с макетами Figma, Photoshop, создаю чистые, семантичные интерфейсы. Более 4 лет опыта, люблю сложные задачи и минимализм.',
+        email: 'hello@portfolio.dev'
+      },
+      socials: [
+        { icon: 'fa-telegram-plane', link: '#' },
+        { icon: 'fa-github', link: '#' },
+        { icon: 'fa-dribbble', link: '#' },
+        { icon: 'fa-behance', link: '#' }
+      ],
+      footerText: '© 2026 · веб-верстальщик / дизайнер'
+    };
+
+    function getYearsWord(n) {
+      const d = n % 10;
+      const dd = n % 100;
+      if (dd >= 11 && dd <= 19) return 'лет';
+      if (d === 1) return 'год';
+      if (d >= 2 && d <= 4) return 'года';
+      return 'лет';
+    }
+    function formatPrice(p) { return p.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' '); }
+
+    let currentTheme = 'light';
+    let popupOpen = false;
+    let currentFilter = 'Все';
+    let currentPage = 1;
+    const ITEMS_PER_PAGE = 6;
+    const EXPERIENCE_YEARS = 4;
+    let uploadedFiles = [];
+
+    let sliderProjects = [];
+    let sliderCurrentProjectIndex = 0;
+    let sliderCurrentImageIndex = 0;
+    let sliderIsOpen = false;
+    let sliderIsDragging = false;
+    let sliderStartX = 0;
+    let sliderStartY = 0;
+
+    function getSystemTheme() { return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'; }
+    function getTimeBasedTheme() { const h = new Date().getHours(); return (h >= 19 || h < 7) ? 'dark' : 'light'; }
+    function getInitialTheme() { const s = getSystemTheme(), t = getTimeBasedTheme(); return (s === 'dark' || t === 'dark') ? 'dark' : 'light'; }
+    function applyTheme(theme) {
+      document.documentElement.setAttribute('data-theme', theme);
+      currentTheme = theme;
+      const ts = document.querySelector('.toggle-switch');
+      if (ts) { if (theme === 'dark') { ts.classList.add('active'); ts.classList.add('dark-knob'); } else { ts.classList.remove('active'); ts.classList.remove('dark-knob'); } }
+      const tl = document.querySelector('.toggle-label');
+      if (tl) tl.textContent = theme === 'dark' ? 'Тёмная тема' : 'Светлая тема';
+      const tbi = document.querySelector('.theme-toggle-btn i');
+      if (tbi) tbi.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+      localStorage.setItem('portfolio-theme', theme);
+    }
+    function togglePopup(e) { e.stopPropagation(); popupOpen = !popupOpen; const p = document.getElementById('themePopup'); if (p) p.classList.toggle('open', popupOpen); }
+    function closePopup() { popupOpen = false; const p = document.getElementById('themePopup'); if (p) p.classList.remove('open'); }
+    function openOrderModal() { const m = document.getElementById('orderModal'); if (m) m.classList.add('active'); document.body.style.overflow = 'hidden'; }
+    function closeOrderModal() { const m = document.getElementById('orderModal'); if (m) m.classList.remove('active'); document.body.style.overflow = ''; uploadedFiles = []; updateFileList(); document.getElementById('orderForm').reset(); }
+    function updateFileList() { const c = document.getElementById('fileList'); if (!c) return; if (uploadedFiles.length === 0) { c.innerHTML = ''; return; } c.innerHTML = uploadedFiles.map((f, i) => `<span class="file-item"><i class="fas fa-file"></i> ${f.name} (${(f.size/1024).toFixed(1)} KB) <button class="remove-file" data-index="${i}"><i class="fas fa-times"></i></button></span>`).join(''); c.querySelectorAll('.remove-file').forEach(b => { b.addEventListener('click', function() { const i = parseInt(this.dataset.index); uploadedFiles.splice(i,1); updateFileList(); }); }); }
+    function handleFileUpload(e) { const files = Array.from(e.target.files); const maxSize = 5*1024*1024; const validTypes = ['image/jpeg','image/png','image/gif','application/pdf','application/msword','application/vnd.openxmlformats-officedocument.wordprocessingml.document']; files.forEach(f => { if (f.size > maxSize) { alert(`Файл "${f.name}" превышает 5MB`); return; } if (!validTypes.includes(f.type) && !f.name.match(/\.(jpg|jpeg|png|gif|pdf|doc|docx)$/i)) { alert(`Файл "${f.name}" имеет неподдерживаемый формат`); return; } uploadedFiles.push(f); }); updateFileList(); e.target.value = ''; }
+    function submitOrder(e) { e.preventDefault(); const form = document.getElementById('orderForm'); const fd = new FormData(form); let msg = '📋 НОВЫЙ ЗАКАЗ\n\n'; msg += `👤 Имя: ${fd.get('name')}\n📧 Email: ${fd.get('email')}\n📱 Телефон: ${fd.get('phone')}\n🔧 Тип сайта: ${fd.get('type')}\n📝 Описание: ${fd.get('description') || 'Не указано'}\n📎 Файлы: ${uploadedFiles.length > 0 ? uploadedFiles.map(f=>f.name).join(', ') : 'Нет файлов'}\n`; alert(msg + '\n\n✅ Заказ отправлен! Я свяжусь с вами в ближайшее время.'); uploadedFiles = []; updateFileList(); closeOrderModal(); form.reset(); }
+    function smoothScroll(tid) { const t = document.querySelector(tid); if (t) { const o = 80, p = t.getBoundingClientRect().top + window.pageYOffset - o; window.scrollTo({ top: p, behavior: 'smooth' }); } }
+    function getFilteredProjects(f) { return f === 'Все' ? content.projects : content.projects.filter(p => p.category === f); }
+    function getTotalPages(f) { return Math.ceil(getFilteredProjects(f).length / ITEMS_PER_PAGE); }
+    function getCurrentPageItems(f, p) { const filtered = getFilteredProjects(f); const s = (p-1)*ITEMS_PER_PAGE; return filtered.slice(s, s+ITEMS_PER_PAGE); }
+    function renderPagination(tp, cp, f) {
+      const w = document.getElementById('paginationWrapper');
+      if (!w) return;
+      if (tp <= 1) { w.innerHTML = ''; return; }
+      let html = `<button class="pagination-btn" data-page="prev" ${cp===1?'disabled':''}><i class="fas fa-chevron-left"></i></button>`;
+      const maxV = 5; let pages = [];
+      if (tp <= maxV) { for (let i=1; i<=tp; i++) pages.push(i); } else {
+        pages.push(1);
+        let s = Math.max(2, cp-1), e = Math.min(tp-1, cp+1);
+        if (cp <= 3) { s=2; e=4; } else if (cp >= tp-2) { s=tp-3; e=tp-1; }
+        if (s > 2) pages.push('...');
+        for (let i=s; i<=e; i++) pages.push(i);
+        if (e < tp-1) pages.push('...');
+        pages.push(tp);
+      }
+      pages.forEach(p => { if (p === '...') { html += `<span class="pagination-ellipsis">…</span>`; } else { html += `<button class="pagination-btn ${p===cp?'active':''}" data-page="${p}">${p}</button>`; } });
+      html += `<button class="pagination-btn" data-page="next" ${cp===tp?'disabled':''}><i class="fas fa-chevron-right"></i></button>`;
+      w.innerHTML = html;
+      w.querySelectorAll('.pagination-btn').forEach(b => { b.addEventListener('click', function() { const p = this.dataset.page; let np = cp; if (p === 'prev') np = cp-1; else if (p === 'next') np = cp+1; else np = parseInt(p); if (np >= 1 && np <= tp && np !== cp) { currentPage = np; renderWorks(currentFilter, np); } }); });
+    }
+
+    function initCardSlider(card, project) {
+      const thumb = card.querySelector('.work-thumb');
+      if (!thumb) return;
+      const images = project.screenshots;
+      // SVG заглушка
+      const PLACEHOLDER_SVG = 'data:image/svg+xml;charset=utf-8,%3Csvg xmlns%3D"http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg" width%3D"600" height%3D"400" viewBox%3D"0 0 600 400"%3E%3Crect width%3D"600" height%3D"400" fill%3D"%23f0f0f0"%2F%3E%3Ctext x%3D"300" y%3D"200" font-family%3D"Arial" font-size%3D"24" fill%3D"%23999" text-anchor%3D"middle" dominant-baseline%3D"middle"%3E%D0%98%D0%B7%D0%BE%D0%B1%D1%80%D0%B0%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BD%D0%B5%20%D0%B7%D0%B0%D0%B3%D1%80%D1%83%D0%B6%D0%B5%D0%BD%D0%BE%3C%2Ftext%3E%3C%2Fsvg%3E';
+      // Замените этот блок:
+      if (!images || images.length <= 1) {
+        thumb.innerHTML = `<img src="${images && images[0] ? images[0] : PLACEHOLDER_SVG}" alt="${project.title}" style="width:100%;height:100%;object-fit:cover;background:#f0f0f0;" onerror="this.src='https://i0.wp.com/din-studio.com/wp-content/upload…22/12/Packaging-Design.png?fit=6000%2C54000&ssl=1'"; this.classList.add('is-broken')" /><span class="thumb-badge">${project.category}</span>`;
+        return;
+      }
+      // if (!images || images.length <= 1) {
+      //   thumb.innerHTML = `<img src="${images ? images[0] : 'https://picsum.photos/seed/default/600/400'}" alt="${project.title}" style="width:100%;height:100%;object-fit:cover;" /><span class="thumb-badge">${project.category}</span>`;
+      //   return;
+      // }
+      let currentIndex = 0, startX = 0, isDragging = false, isSwiping = false, hasSwiped = false;
+      let blockClick = false; // Флаг блокировки клика после свайпа
+      
+      thumb.innerHTML = `
+        <div class="slider-track" style="transform:translateX(0%);">
+          ${images.map(src => `<img src="${src}" alt="${project.title}" loading="lazy" draggable="false" onerror="this.src='Packaging-Design.webp'" />`).join('')}
+        </div>
+        <button class="slider-arrow prev" data-dir="prev"><i class="fas fa-chevron-left"></i></button>
+        <button class="slider-arrow next" data-dir="next"><i class="fas fa-chevron-right"></i></button>
+        <div class="slider-dots">${images.map((_,i) => `<button class="dot ${i===0?'active':''}" data-index="${i}"></button>`).join('')}</div>
+        <span class="thumb-badge">${project.category}</span>
+      `;
+      const track = thumb.querySelector('.slider-track'), dots = thumb.querySelectorAll('.dot');
+      const prevBtn = thumb.querySelector('.slider-arrow.prev'), nextBtn = thumb.querySelector('.slider-arrow.next');
+      
+      function updateSlider(index, animate = true) {
+        if (index < 0) index = images.length - 1;
+        if (index >= images.length) index = 0;
+        currentIndex = index;
+        if (!animate) track.style.transition = 'none';
+        else track.style.transition = `transform ${SLIDER_CONFIG.transitionDuration}ms cubic-bezier(0.2,0.9,0.3,1)`;
+        track.style.transform = `translateX(-${currentIndex*100}%)`;
+        dots.forEach((dot,i) => dot.classList.toggle('active', i === currentIndex));
+        setTimeout(() => { track.style.transition = `transform ${SLIDER_CONFIG.transitionDuration}ms cubic-bezier(0.2,0.9,0.3,1)`; }, SLIDER_CONFIG.transitionDuration + 50);
+      }
+      
+      function prevSlide(e) { e.stopPropagation(); updateSlider(currentIndex-1); }
+      function nextSlide(e) { e.stopPropagation(); updateSlider(currentIndex+1); }
+      
+      if (prevBtn) prevBtn.addEventListener('click', prevSlide);
+      if (nextBtn) nextBtn.addEventListener('click', nextSlide);
+      dots.forEach((dot,i) => { dot.addEventListener('click', function(e) { e.stopPropagation(); updateSlider(i); }); });
+
+      // Mouse events
+      if (!SLIDER_CONFIG.disableMouseEvents) {
+        thumb.addEventListener('mousedown', (e) => {
+          if (e.target.closest('.slider-arrow') || e.target.closest('.dot') || e.target.closest('.thumb-badge')) return;
+          startX = e.clientX; 
+          isDragging = true; 
+          isSwiping = false; 
+          hasSwiped = false;
+          thumb.style.cursor = 'grabbing';
+        });
+        
+        document.addEventListener('mousemove', (e) => {
+          if (!isDragging) return;
+          const diff = startX - e.clientX;
+          if (Math.abs(diff) > 5) { 
+            isSwiping = true; 
+            hasSwiped = true; 
+            const p = (diff / thumb.offsetWidth) * 100; 
+            track.style.transition = 'none'; 
+            track.style.transform = `translateX(${-currentIndex*100 - p}%)`; 
+          }
+        });
+        
+        document.addEventListener('mouseup', (e) => {
+          if (!isDragging) return;
+          isDragging = false; 
+          thumb.style.cursor = 'pointer';
+          
+          if (hasSwiped) { 
+            const diff = startX - e.clientX; 
+            if (Math.abs(diff) > SLIDER_CONFIG.swipeThreshold) { 
+              if (diff > 0) updateSlider(currentIndex+1); 
+              else updateSlider(currentIndex-1); 
+            } else updateSlider(currentIndex); 
+            
+            // Блокируем клик после mouseup со свайпом
+            blockClick = true;
+            setTimeout(() => { blockClick = false; }, 100);
+          }
+          
+          isSwiping = false; 
+          hasSwiped = false;
+        });
+      }
+
+      // Touch events
+      thumb.addEventListener('touchstart', (e) => {
+        if (e.target.closest('.slider-arrow') || e.target.closest('.dot') || e.target.closest('.thumb-badge')) return;
+        startX = e.touches[0].clientX; 
+        isDragging = true; 
+        isSwiping = false; 
+        hasSwiped = false;
+      }, { passive: true });
+      
+      thumb.addEventListener('touchmove', (e) => {
+        if (!isDragging) return;
+        const diff = startX - e.touches[0].clientX;
+        if (Math.abs(diff) > 5) { 
+          isSwiping = true; 
+          hasSwiped = true; 
+          const p = (diff / thumb.offsetWidth) * 100; 
+          track.style.transition = 'none'; 
+          track.style.transform = `translateX(${-currentIndex*100 - p}%)`; 
+        }
+      }, { passive: true });
+      
+      thumb.addEventListener('touchend', (e) => {
+        if (!isDragging) return;
+        isDragging = false;
+        
+        if (hasSwiped) { 
+          const diff = startX - e.changedTouches[0].clientX; 
+          if (Math.abs(diff) > SLIDER_CONFIG.swipeThreshold) { 
+            if (diff > 0) updateSlider(currentIndex+1); 
+            else updateSlider(currentIndex-1); 
+          } else updateSlider(currentIndex); 
+          
+          // Блокируем клик после touchend со свайпом
+          blockClick = true;
+          setTimeout(() => { blockClick = false; }, 100);
+        }
+        
+        isSwiping = false; 
+        hasSwiped = false;
+      }, { passive: true });
+
+      // ОТКРЫТИЕ МОДАЛКИ ТОЛЬКО ПО КЛИКУ (не по свайпу)
+      let clickTimer = null;
+      thumb.addEventListener('click', function(e) {
+        // Если клик заблокирован - выходим
+        if (blockClick) {
+          blockClick = false; // Сбрасываем флаг
+          return;
+        }
+        
+        if (e.target.closest('.slider-arrow') || e.target.closest('.dot') || e.target.closest('.thumb-badge')) return;
+        if (hasSwiped) { 
+          hasSwiped = false; 
+          return; 
+        }
+        
+        clearTimeout(clickTimer);
+        clickTimer = setTimeout(() => { openModalSlider(project); }, 100);
+      });
+
+      // Для ссылки "Посмотреть"
+      const link = card.querySelector('.work-link');
+      if (link) {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          openModalSlider(project);
+        });
+      }
+
+      card._sliderUpdate = updateSlider;
+    }
+
+    function openModalSlider(project) {
+      const overlay = document.getElementById('modalSliderOverlay');
+      if (!overlay) return;
+      const allProjects = getFilteredProjects(currentFilter);
+      const idx = allProjects.findIndex(p => p.id === project.id);
+      if (idx === -1) return;
+      sliderProjects = allProjects;
+      sliderCurrentProjectIndex = idx;
+      sliderCurrentImageIndex = 0;
+      sliderIsOpen = true;
+      updateModalSlider();
+      overlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeModalSlider() {
+      const overlay = document.getElementById('modalSliderOverlay');
+      if (!overlay) return;
+      overlay.classList.remove('active');
+      document.body.style.overflow = '';
+      sliderIsOpen = false;
+    }
+    function updateModalSlider() {
+      const project = sliderProjects[sliderCurrentProjectIndex];
+      if (!project) return;
+      const images = project.screenshots || [project.screenshot || 'https://picsum.photos/seed/default/600/400'];
+      if (sliderCurrentImageIndex >= images.length) sliderCurrentImageIndex = images.length-1;
+      if (sliderCurrentImageIndex < 0) sliderCurrentImageIndex = 0;
+      const img = document.getElementById('sliderImage');
+      const counter = document.getElementById('sliderCounter');
+      const dotsC = document.getElementById('sliderDotsModal');
+      const titleEl = document.getElementById('sliderProjectTitle');
+      if (img) { img.src = images[sliderCurrentImageIndex]; img.alt = project.title; }
+      if (titleEl) titleEl.textContent = `${project.title} · ${project.category}`;
+      if (counter) counter.textContent = `${sliderCurrentImageIndex+1} / ${images.length}`;
+      if (dotsC) {
+        dotsC.innerHTML = images.map((_,i) => `<button class="dot-modal ${i===sliderCurrentImageIndex?'active':''}" data-index="${i}"></button>`).join('');
+        dotsC.querySelectorAll('.dot-modal').forEach(d => { d.addEventListener('click', function() { sliderCurrentImageIndex = parseInt(this.dataset.index); updateModalSlider(); }); });
+      }
+    }
+    function modalPrevImage() { const project = sliderProjects[sliderCurrentProjectIndex]; if (!project) return; const images = project.screenshots || [project.screenshot || 'https://i0.wp.com/din-studio.com/wp-content/upload…22/12/Packaging-Design.png?fit=6000%2C54000&ssl=1']; sliderCurrentImageIndex = (sliderCurrentImageIndex-1+images.length)%images.length; updateModalSlider(); }
+    function modalNextImage() { const project = sliderProjects[sliderCurrentProjectIndex]; if (!project) return; const images = project.screenshots || [project.screenshot || 'https://i0.wp.com/din-studio.com/wp-content/upload…22/12/Packaging-Design.png?fit=6000%2C54000&ssl=1']; sliderCurrentImageIndex = (sliderCurrentImageIndex+1)%images.length; updateModalSlider(); }
+
+    function initModalSliderSwipe() {
+      const wrap = document.getElementById('sliderImageWrap');
+      if (!wrap) return;
+      let msd = false, msx = 0, msy = 0;
+      wrap.addEventListener('mousedown', (e) => { msd = true; msx = e.clientX; msy = e.clientY; wrap.style.cursor = 'grabbing'; });
+      document.addEventListener('mousemove', (e) => { if (!msd || !sliderIsOpen) return; const dx = msx - e.clientX, dy = Math.abs(msy - e.clientY); if (Math.abs(dx) > 10 && dy < 30) e.preventDefault(); });
+      document.addEventListener('mouseup', (e) => {
+        if (!msd || !sliderIsOpen) return;
+        msd = false; wrap.style.cursor = 'grab';
+        const dx = msx - e.clientX, dy = Math.abs(msy - e.clientY);
+        if (Math.abs(dx) > SLIDER_CONFIG.swipeThreshold && dy < 50) { if (dx > 0) modalNextImage(); else modalPrevImage(); }
+      });
+      wrap.addEventListener('touchstart', (e) => { msd = true; msx = e.touches[0].clientX; msy = e.touches[0].clientY; }, { passive: true });
+      wrap.addEventListener('touchmove', (e) => { if (!msd || !sliderIsOpen) return; const dx = msx - e.touches[0].clientX, dy = Math.abs(msy - e.touches[0].clientY); if (Math.abs(dx) > 10 && dy < 30) { } }, { passive: true });
+      wrap.addEventListener('touchend', (e) => {
+        if (!msd || !sliderIsOpen) return;
+        msd = false;
+        const dx = msx - e.changedTouches[0].clientX, dy = Math.abs(msy - e.changedTouches[0].clientY);
+        if (Math.abs(dx) > SLIDER_CONFIG.swipeThreshold && dy < 50) { if (dx > 0) modalNextImage(); else modalPrevImage(); }
+      }, { passive: true });
+    }
+
+    function renderWorks(filter, page) {
+      const grid = document.getElementById('worksGrid');
+      const count = document.getElementById('projectCount');
+      const filtered = getFilteredProjects(filter);
+      const totalPages = getTotalPages(filter);
+      if (page > totalPages) page = totalPages;
+      if (page < 1) page = 1;
+      currentPage = page;
+      const items = getCurrentPageItems(filter, page);
+      if (count) count.textContent = filtered.length;
+      if (grid) {
+        grid.innerHTML = items.map((p, idx) => `
+          <div class="work-card" data-category="${p.category}" data-project-id="${p.id}" style="animation-delay:${0.05+idx*0.05}s;">
+            <div class="work-thumb"></div>
+            <span class="work-tag">${p.category}</span>
+            <h3>${p.title}</h3>
+            <p class="work-desc">${p.desc}</p>
+            <a href="#" class="work-link">Посмотреть <i class="fas fa-arrow-right"></i></a>
+          </div>
+        `).join('');
+        grid.querySelectorAll('.work-card').forEach(card => {
+          const id = parseInt(card.dataset.projectId);
+          const project = content.projects.find(p => p.id === id);
+          if (project) initCardSlider(card, project);
+        });
+      }
+      renderPagination(totalPages, currentPage, filter);
+    }
+
+    function renderApp() {
+      const app = document.getElementById('app');
+      const initialTheme = localStorage.getItem('portfolio-theme') || getInitialTheme();
+      applyTheme(initialTheme);
+      const yw = getYearsWord(EXPERIENCE_YEARS);
+
+      app.innerHTML = `
+        <section class="hero animate-on-load-delay-1">
+          <div class="hero-sub"><i class="fas fa-code" style="margin-right:8px;"></i> ${content.hero.sub}</div>
+          <h1>${content.hero.title}</h1>
+          <p>${content.hero.desc}</p>
+          <div class="hero-cta">
+            ${content.hero.cta.map(b => `<a href="${b.href}" class="btn btn-${b.type}">${b.text}</a>`).join('')}
+            <button class="btn btn-primary" onclick="openOrderModal()"><i class="fas fa-shopping-cart" style="margin-right:8px;"></i>Заказать сайт</button>
+          </div>
+        </section>
+
+        <h2 class="section-title animate-on-load-delay-2" id="works"><i class="fas fa-th-large" style="margin-right:12px;"></i> Избранные проекты</h2>
+        <div class="filter-bar" id="filterBar">${content.filters.map(f => `<button class="filter-btn ${f==='Все'?'active':''}" data-filter="${f}">${f}</button>`).join('')}</div>
+        <div class="works-grid" id="worksGrid"></div>
+        <div class="pagination-wrapper" id="paginationWrapper"></div>
+
+        <div class="stats-row">
+          <div class="stat-item"><div class="stat-number" id="projectCount">${content.projects.length}</div><div class="stat-label">проектов в портфолио</div></div>
+          <div class="stat-item"><div class="stat-number">${EXPERIENCE_YEARS}+</div><div class="stat-label">${EXPERIENCE_YEARS} ${yw} опыта</div></div>
+          <div class="stat-item"><div class="stat-number">12</div><div class="stat-label">довольных клиентов</div></div>
+        </div>
+
+        <h2 class="section-title animate-on-load-delay-3" id="skills"><i class="fas fa-chart-bar" style="margin-right:12px;"></i> Мои навыки</h2>
+        <div class="skills-grid">${content.skills.map(s => `<div class="skill-item animate-on-load-delay-4"><div class="skill-header"><span class="skill-name">${s.name}</span><span class="skill-percent">${s.percent}%</span></div><div class="skill-bar"><div class="skill-fill" style="--skill-width:${s.percent}%;"></div></div></div>`).join('')}</div>
+
+        <h2 class="section-title animate-on-load-delay-5"><i class="fas fa-star" style="margin-right:12px;"></i> Преимущества заказа</h2>
+        <div class="advantages-grid">${content.advantages.map((a,i) => `<div class="advantage-item animate-on-load-delay-${6+i}"><div class="advantage-icon"><i class="fas ${a.icon}"></i></div><h4>${a.title}</h4><p>${a.desc}</p></div>`).join('')}</div>
+
+        <h2 class="section-title animate-on-load-delay-8" id="pricing"><i class="fas fa-tag" style="margin-right:12px;"></i> Расценки на услуги</h2>
+        <div class="pricing-grid">${content.pricing.map((p,i) => `<div class="pricing-card ${p.popular?'popular':''} animate-on-load-delay-${9+i}">${p.popular?'<div class="popular-badge">Популярный</div>':''}<div class="pricing-name">${p.name}</div><div class="pricing-price">${formatPrice(p.price)} ₽<span></span></div><div class="pricing-description">${p.description}</div><ul class="pricing-features">${p.features.map(f => `<li><i class="fas fa-check"></i> ${f}</li>`).join('')}</ul><button class="btn btn-primary" onclick="openOrderModal()">Заказать</button></div>`).join('')}</div>
+
+        <h2 class="section-title animate-on-load-delay-9"><i class="fas fa-quote-right" style="margin-right:12px;"></i> Отзывы клиентов</h2>
+        <div class="testimonials-grid">${content.testimonials.map((t,i) => `<div class="testimonial-item animate-on-load-delay-${10+i}"><div class="quote-icon"><i class="fas fa-quote-left"></i></div><p class="testimonial-text">${t.text}</p><div class="testimonial-author"><div class="author-avatar"><i class="fas fa-user"></i></div><div class="author-info"><div class="author-name">${t.author}</div><div class="author-role">${t.role}</div></div></div></div>`).join('')}</div>
+
+        <h2 class="section-title animate-on-load-delay-8" id="services"><i class="fas fa-cog" style="margin-right:12px;"></i> Что я делаю</h2>
+        <div class="services">${content.services.map(s => `<div class="service-item"><i class="fas ${s.icon}"></i><h4>${s.title}</h4><p>${s.desc}</p></div>`).join('')}</div>
+
+        <div class="about-section animate-on-load-delay-8" id="contact">
+          <div class="about-text"><h2>${content.about.title}</h2><p>${content.about.desc}</p></div>
+          <div class="contact-badge"><span><i class="far fa-envelope" style="margin-right:8px;"></i>${content.about.email}</span><button class="btn-small" onclick="openOrderModal()">Заказать сайт</button></div>
+        </div>
+
+        <footer class="footer animate-on-load-delay-8">
+          <div>${content.footerText}</div>
+          <div class="socials">${content.socials.map(s => `<a href="${s.link}" aria-label="${s.icon}"><i class="fab ${s.icon}"></i></a>`).join('')}</div>
+        </footer>
+
+        <div class="modal-overlay" id="orderModal">
+          <div class="modal">
+            <div class="modal-header"><h2><i class="fas fa-shopping-cart" style="margin-right:12px;"></i>Оформление заказа</h2><button class="modal-close" onclick="closeOrderModal()"><i class="fas fa-times"></i></button></div>
+            <form id="orderForm" onsubmit="submitOrder(event)">
+              <div class="form-group"><label for="name">Ваше имя *</label><input type="text" id="name" name="name" required placeholder="Иван Иванов" /></div>
+              <div class="form-group"><label for="email">Email *</label><input type="email" id="email" name="email" required placeholder="ivan@example.com" /></div>
+              <div class="form-group"><label for="phone">Телефон *</label><input type="tel" id="phone" name="phone" required placeholder="+7 (999) 123-45-67" /></div>
+              <div class="form-group"><label for="type">Тип сайта *</label><select id="type" name="type" required><option value="">Выберите тип...</option><option value="landing">Лендинг (одностраничный)</option><option value="business">Сайт-визитка</option><option value="corporate">Корпоративный сайт</option><option value="ecommerce">Интернет-магазин</option><option value="blog">Блог / новостной портал</option><option value="portfolio">Сайт-портфолио</option><option value="other">Другое</option></select></div>
+              <div class="form-group"><label for="description">Описание проекта / ТЗ</label><textarea id="description" name="description" placeholder="Опишите, какой сайт вам нужен, какие функции должны быть, есть ли готовый дизайн..."></textarea></div>
+              <div class="form-group"><label>Прикрепить файлы (до 5MB)</label><div class="file-upload"><input type="file" multiple accept=".jpg,.jpeg,.png,.gif,.pdf,.doc,.docx" onchange="handleFileUpload(event)" /><div class="file-label"><i class="fas fa-cloud-upload-alt"></i><span>Перетащите файлы сюда или кликните для выбора</span><div style="font-size:0.75rem;margin-top:0.3rem;color:var(--text-muted);">Поддерживаются: JPG, PNG, PDF, DOC</div></div></div><div class="file-list" id="fileList"></div></div>
+              <button type="submit" class="form-submit"><i class="fas fa-paper-plane" style="margin-right:8px;"></i>Отправить заказ</button>
+            </form>
+          </div>
+        </div>
+      `;
+
+      renderWorks('Все', 1);
+      if (window.scrollY > 0) window.scrollTo({ top: 0, behavior: 'instant' });
+      initModalSliderSwipe();
+
+      document.getElementById('themeToggleBtn').addEventListener('click', togglePopup);
+      document.getElementById('themeToggleSwitch').addEventListener('click', function(e) {
+        e.stopPropagation();
+        applyTheme(currentTheme === 'light' ? 'dark' : 'light');
+      });
+      document.addEventListener('click', function(e) {
+        const popup = document.getElementById('themePopup'), btn = document.getElementById('themeToggleBtn');
+        if (popup && popup.classList.contains('open') && !popup.contains(e.target) && !btn.contains(e.target)) closePopup();
+      });
+      document.querySelectorAll('.nav a[data-target]').forEach(l => {
+        l.addEventListener('click', function(e) { e.preventDefault(); const t = this.getAttribute('data-target'); if (t) smoothScroll(t); });
+      });
+      document.querySelectorAll('.hero-cta .btn').forEach(l => {
+        l.addEventListener('click', function(e) { const href = this.getAttribute('href'); if (href && href.startsWith('#')) { e.preventDefault(); smoothScroll(href); } });
+      });
+      document.querySelectorAll('.filter-btn').forEach(b => {
+        b.addEventListener('click', function() {
+          const f = this.dataset.filter;
+          document.querySelectorAll('.filter-btn').forEach(b2 => b2.classList.remove('active'));
+          this.classList.add('active');
+          currentFilter = f;
+          currentPage = 1;
+          renderWorks(f, 1);
+        });
+      });
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') { closeOrderModal(); closeModalSlider(); }
+        if (sliderIsOpen) { if (e.key === 'ArrowLeft') modalPrevImage(); if (e.key === 'ArrowRight') modalNextImage(); }
+      });
+      document.getElementById('orderModal').addEventListener('click', function(e) { if (e.target === this) closeOrderModal(); });
+      document.getElementById('sliderClose').addEventListener('click', closeModalSlider);
+      document.getElementById('sliderPrev').addEventListener('click', modalPrevImage);
+      document.getElementById('sliderNext').addEventListener('click', modalNextImage);
+      document.getElementById('modalSliderOverlay').addEventListener('click', function(e) { if (e.target === this) closeModalSlider(); });
+      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => { if (!localStorage.getItem('portfolio-theme')) applyTheme(e.matches ? 'dark' : 'light'); });
+    }
+
+    document.addEventListener('DOMContentLoaded', renderApp);
+
+    function initHeaderScroll() {
+      const headers = document.querySelectorAll('.js-header');
+      if (!headers.length) { setTimeout(initHeaderScroll, 100); return; }
+      headers.forEach(h => {
+        let hh = h.offsetHeight, lsy = window.scrollY, st = null;
+        function onScroll() {
+          const csy = window.scrollY, delta = csy - lsy;
+          if (csy <= 0) { h.style.transition = 'transform 0.3s ease'; h.style.transform = 'translateY(0)'; lsy = csy; return; }
+          hh = h.offsetHeight;
+          let cty = 0;
+          const tf = window.getComputedStyle(h).transform;
+          if (tf !== 'none') { const m = tf.match(/matrix.*\((.+)\)/); if (m) { const v = m[1].split(', ').map(Number); if (v.length === 6) cty = v[5] || 0; else if (v.length === 16) cty = v[13] || 0; } }
+          let nty = cty;
+          if (delta > 0) nty = Math.max(-hh, cty - delta);
+          else if (delta < 0) nty = Math.min(0, cty - delta);
+          h.style.transition = 'none';
+          h.style.transform = `translateY(${nty}px)`;
+          lsy = csy;
+          clearTimeout(st);
+          st = setTimeout(() => {
+            const tf2 = window.getComputedStyle(h).transform;
+            let cty2 = 0;
+            if (tf2 !== 'none') { const m2 = tf2.match(/matrix.*\((.+)\)/); if (m2) { const v2 = m2[1].split(', ').map(Number); if (v2.length === 6) cty2 = v2[5] || 0; else if (v2.length === 16) cty2 = v2[13] || 0; } }
+            const hp = Math.abs(cty2) / hh;
+            h.style.transition = 'transform 0.3s cubic-bezier(0.25,0.46,0.45,0.94)';
+            h.style.transform = hp > 0.5 ? `translateY(-${hh}px)` : 'translateY(0)';
+          }, 150);
+        }
+        let throttled = false;
+        function ts() { if (!throttled) { onScroll(); throttled = true; requestAnimationFrame(() => { throttled = false; }); } }
+        window.addEventListener('scroll', ts, { passive: true });
+        let rt;
+        window.addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(() => { hh = h.offsetHeight; h.style.transition = 'transform 0.3s ease'; h.style.transform = 'translateY(0)'; }, 200); });
+        h.style.transform = 'translateY(0)';
+        h.style.transition = 'border-color var(--transition-speed), transform 0.2s ease';
+        lsy = window.scrollY;
+      });
+    }
+    if (document.readyState === 'complete') setTimeout(initHeaderScroll, 50);
+    else window.addEventListener('load', () => setTimeout(initHeaderScroll, 50));
+  </script>
+</body>
+</html>
